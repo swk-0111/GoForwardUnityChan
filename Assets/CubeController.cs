@@ -48,8 +48,6 @@ public class CubeController : MonoBehaviour {
         //test キューブが着地していたらボリュームをtrue
         //GetComponent<AudioSource>().volume = (isGround) ? 0 : 1;
 
-
-       // GetComponent<AudioSource>().volume = 0;
     }
 
     void OnCollisionEnter2D(Collision2D other)
