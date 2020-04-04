@@ -11,10 +11,13 @@ public class CubeController : MonoBehaviour {
     private float deadLine = -10;
 
     //test 地面の位置
-    private float groundLevel = -3.0f;
+    private float groundLevel = -3.5f;
 
     //AudioSource
     AudioSource audio;
+
+    //キューブが床と接しているかの判定
+    bool isGround;
 
     // Use this for initialization
     void Start () {
@@ -35,9 +38,6 @@ public class CubeController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        //test キューブが着地しているかどうか調べる
-        // if(isGround == (transform.position.y > this.groundLevel))
-        // {
         // 接していたら音を鳴らす
         //Debug.Log("着地した");
         //     GetComponent<AudioSource>().volume = 1;
@@ -54,8 +54,12 @@ public class CubeController : MonoBehaviour {
     {
         // GetComponent<AudioSource>().volume = 1;
 
-        //音の再生
-        audio.Play();
+        //もし衝突相手が床、もしくはCubeだったら
+        if (isGround == (transform.position.y > this.groundLevel) || other.gameObject.tag == "Cube")
+        {
+            //音の再生
+            audio.Play();
+        }
 
         //もし衝突相手がUnityちゃんだったらvolumeは0
         if (other.gameObject.tag == "UnityChan")
